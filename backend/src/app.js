@@ -6,7 +6,7 @@ const cors = require("cors");
 const compression = require("compression");
 const morgan = require("morgan");
 const projectRoute = require("./routes/index");
-
+const path = require("path")
 
 const app = express()
 
@@ -19,7 +19,11 @@ app.use(xss())
 app.use(mongosanitize())
 app.use(morgan('dev'))
 
+
+app.use("/images",express.static("src/uploads"))
+
 app.use("/api",projectRoute)
+
 
 
 app.use((req,res,next)=>{
